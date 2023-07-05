@@ -2,10 +2,10 @@
 
 const grid = document.querySelector('.grid');
 const squares = [];
-const width = 51;
+const width = 204;
 
 const createBoard = function () {
-    for (let i = 0; i < 1020; i++) {
+    for (let i = 0; i < 16320; i++) {
         let cell = document.createElement('div');
         cell.classList.add('cell');
         grid.appendChild(cell);
@@ -17,20 +17,35 @@ createBoard();
 
 // Draw net
 const net = [];
-for (let i = 0; i < 19; i++) {
+for (let i = 0; i < 79; i++) {
     i++;
-    let square = (width * i) + 26;
+    let square = (width * i) + 104;
     squares[square].classList.add('net');
     net.push(square);
 }
 
-const player1 = [0, width, width * 2, width * 3];
-const player2 = [0, width, width * 2, width * 3];
-let player1Index = 357;
-let player2Index = 407;
+
+
+
+let player1Index = 408;
+let player2Index = 814;
 
 
 //#region Draw/UnDraw Players
+
+const player1 = [];
+for (let i = 0; i < 8; i++) {
+    let square = width * i;
+    player1.push(square);
+}
+
+const player2 = [];
+for (let i = 0; i < 8; i++) {
+    let square = width * i;
+    player2.push(square);
+}
+
+
 const drawPlayer1 = function () {
     player1.forEach((e) => squares[e + player1Index].classList.add('player'))
 }

@@ -2,12 +2,17 @@
     background-color: black;
 }
 
+h1 {
+    color: white;
+    margin-left: 170px;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(51, 1fr);
-    width: 400px;
-    height: 250px;
-    border: white 3px solid;
+    grid-template-columns: repeat(204, 1fr);
+    width: 800px;
+    height: 500px;
+    /* border: white 3px solid; */
 }
 
 .cell {
