@@ -43,16 +43,16 @@ for (let i = 0; i < 11; i++) {
 
 
 const drawPlayer1 = function () {
-    player1.forEach((e) => squares[e + player1Index].classList.add('player'))
+    player1.forEach((e) => squares[e + player1Index].classList.add('playerOne'))
 }
 const undrawPlayer1 = function () {
-    player1.forEach((e) => squares[e + player1Index].classList.remove('player'))
+    player1.forEach((e) => squares[e + player1Index].classList.remove('playerOne'))
 }
 const drawPlayer2 = function () {
-    player1.forEach((e) => squares[e + player2Index].classList.add('player'))
+    player1.forEach((e) => squares[e + player2Index].classList.add('playerTwo'))
 }
 const undrawPlayer2 = function () {
-    player1.forEach((e) => squares[e + player2Index].classList.remove('player'))
+    player1.forEach((e) => squares[e + player2Index].classList.remove('playerTwo'))
 }
 //#endregion
 
@@ -84,7 +84,7 @@ document.addEventListener('keydown', function (e) {
             break;
 
         //player2 Move Up
-        case 38:
+        case 79:
             undrawPlayer2();
             if (player2.some((e) => e + player2Index === 203)) {
                 player2Index += width * 3;
@@ -94,7 +94,7 @@ document.addEventListener('keydown', function (e) {
             break;
 
         //player2 Move Down
-        case 40:
+        case 76:
             undrawPlayer2();
             if (player2.some((e) => e + player2Index === 16319)) {
                 player2Index -= width * 3;
@@ -128,6 +128,7 @@ const undrawBall = function () {
 
 drawBall();
 
+// Ball mechanics
 const ballMove = function () {
     undrawBall();
 
@@ -155,47 +156,36 @@ const ballMove = function () {
         }
     }
 
-    //If ball hits the left side
-    if (ball.some((e) => (e + ballIndex + direction) % 204 === 0)) {
-        console.log('you lost a point')
-    }
-
-
-    // If ball hits the right side
-    if (ball.some((e) => (e + ballIndex + direction + 1) % 204 === 0)) {
-        console.log('you won a point')
-    }
-
-    //If ball hits player 1
-    if ((ball.some((e) => squares[e + ballIndex].classList.contains('player')))) {
+    // If ball hits player 1
+    if ((ball.some((e) => squares[e + ballIndex].classList.contains('playerOne')))) {
         switch (direction) {
             case upLeft:
                 direction = upRight;
                 break;
-            case upRight:
-                direction = downRight;
-                break;
             case downLeft:
-                direction = upLeft;
-                break;
-            case downRight:
-                direction = upRight;
+                direction = downRight;
                 break;
         }
     }
 
-
-
+    // If ball hits player 2
+    if ((ball.some((e) => squares[e + ballIndex].classList.contains('playerTwo')))) {
+        switch (direction) {
+            case downRight:
+                direction = downLeft;
+                break;
+            case upRight:
+                direction = upLeft;
+                break;
+        }
+    }
 
     ballIndex += direction;
-
-
-
     drawBall();
-
 }
 
-// setInterval(ballMove, 60)
+
+// setInterval(ballMove, 30)
 
 
 

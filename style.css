@@ -20,7 +20,11 @@ h1 {
     /* border: red solid 1px; */
 }
 
-.player {
+.playerOne {
+    background-color: white;
+}
+
+.playerTwo {
     background-color: white;
 }
 
