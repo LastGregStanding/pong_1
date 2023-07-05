@@ -24,11 +24,8 @@ for (let i = 0; i < 79; i++) {
     net.push(square);
 }
 
-
-
-
-let player1Index = 408;
-let player2Index = 814;
+let player1Index = 0;
+let player2Index = 203;
 
 
 //#region Draw/UnDraw Players
@@ -68,49 +65,49 @@ drawPlayer2();
 document.addEventListener('keydown', function (e) {
     switch (e.keyCode) {
 
-        //player2 Move Up
-        case 38:
-            undrawPlayer2();
-            if (player2Index === 50) {
-                player2Index += width;
-            }
-            player2Index -= width;
-            drawPlayer2();
-            break;
-
-        //player2 Move Down
-        case 40:
-            undrawPlayer2();
-            if (player2Index === 866) {
-                player2Index -= width;
-            }
-            player2Index += width;
-            drawPlayer2();
-            break;
-
         //player1 Move Up
         case 87:
             undrawPlayer1();
-            if (player1Index === 0) {
-                player1Index += width;
+            if (player1.some((e) => e + player1Index === 0)) {
+                player1Index += width * 3;
             }
-            player1Index -= width;
+            player1Index -= width * 3;
             drawPlayer1();
             break;
 
         //player1 Move Down
         case 83:
             undrawPlayer1();
-            if (player1Index === 816) {
-                player1Index -= width;
+            if (player1.some((e) => e + player1Index === 16116)) {
+                player1Index -= width * 3;
             }
-            player1Index += width;
+            player1Index += width * 3;
             drawPlayer1();
             break;
 
+        //player2 Move Up
+        case 38:
+            undrawPlayer2();
+            console.log(player2)
+            if (player2.some((e) => e + player2Index === 203)) {
+                player2Index += width * 3;
+            }
+            player2Index -= width * 3;
+            drawPlayer2();
+            break;
+
+        //player2 Move Down
+        case 40:
+            undrawPlayer2();
+            if (player2.some((e) => e + player2Index === 16319)) {
+                player2Index -= width * 3;
+            }
+            player2Index += width * 3;
+            drawPlayer2();
+            break;
     }
-
-
 })
+
+
 
 
