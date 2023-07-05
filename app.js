@@ -24,20 +24,19 @@ for (let i = 0; i < 79; i++) {
     net.push(square);
 }
 
-let player1Index = 0;
-let player2Index = 203;
-
+let player1Index = 7344;
+let player2Index = 7547;
 
 //#region Draw/UnDraw Players
 
 const player1 = [];
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 11; i++) {
     let square = width * i;
     player1.push(square);
 }
 
 const player2 = [];
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 11; i++) {
     let square = width * i;
     player2.push(square);
 }
@@ -60,7 +59,6 @@ const undrawPlayer2 = function () {
 drawPlayer1();
 drawPlayer2();
 
-
 // Player movement
 document.addEventListener('keydown', function (e) {
     switch (e.keyCode) {
@@ -78,8 +76,8 @@ document.addEventListener('keydown', function (e) {
         //player1 Move Down
         case 83:
             undrawPlayer1();
-            if (player1.some((e) => e + player1Index === 16116)) {
-                player1Index -= width * 3;
+            if (player1.some((e) => (e + player1Index) === 16116)) {
+                player1Index -= (width * 3);
             }
             player1Index += width * 3;
             drawPlayer1();
@@ -88,7 +86,6 @@ document.addEventListener('keydown', function (e) {
         //player2 Move Up
         case 38:
             undrawPlayer2();
-            console.log(player2)
             if (player2.some((e) => e + player2Index === 203)) {
                 player2Index += width * 3;
             }
@@ -108,6 +105,12 @@ document.addEventListener('keydown', function (e) {
     }
 })
 
+let ball = [0, 1, width, width + 1];
+let ballIndex = 800;
+
+ball.forEach((e) => {
+    squares[e + ballIndex].classList.add('ball')
+})
 
 
 

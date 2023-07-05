@@ -12,7 +12,7 @@ h1 {
     grid-template-columns: repeat(204, 1fr);
     width: 800px;
     height: 500px;
-    /* border: white 3px solid; */
+    /* border: cyan 3px solid; */
 }
 
 .cell {
