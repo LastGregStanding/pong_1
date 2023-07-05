@@ -15,9 +15,6 @@ const createBoard = function () {
 
 createBoard();
 
-const player1 = [0, width, width * 2, width * 3];
-const player2 = [0, width, width * 2, width * 3];
-
 // Draw net
 const net = [];
 for (let i = 0; i < 19; i++) {
@@ -27,7 +24,8 @@ for (let i = 0; i < 19; i++) {
     net.push(square);
 }
 
-
+const player1 = [0, width, width * 2, width * 3];
+const player2 = [0, width, width * 2, width * 3];
 let player1Index = 357;
 let player2Index = 407;
 
@@ -50,12 +48,17 @@ const undrawPlayer2 = function () {
 drawPlayer1();
 drawPlayer2();
 
+
+// Player movement
 document.addEventListener('keydown', function (e) {
     switch (e.keyCode) {
 
         //player2 Move Up
         case 38:
             undrawPlayer2();
+            if (player2Index === 50) {
+                player2Index += width;
+            }
             player2Index -= width;
             drawPlayer2();
             break;
@@ -63,6 +66,9 @@ document.addEventListener('keydown', function (e) {
         //player2 Move Down
         case 40:
             undrawPlayer2();
+            if (player2Index === 866) {
+                player2Index -= width;
+            }
             player2Index += width;
             drawPlayer2();
             break;
@@ -70,6 +76,9 @@ document.addEventListener('keydown', function (e) {
         //player1 Move Up
         case 87:
             undrawPlayer1();
+            if (player1Index === 0) {
+                player1Index += width;
+            }
             player1Index -= width;
             drawPlayer1();
             break;
@@ -77,6 +86,9 @@ document.addEventListener('keydown', function (e) {
         //player1 Move Down
         case 83:
             undrawPlayer1();
+            if (player1Index === 816) {
+                player1Index -= width;
+            }
             player1Index += width;
             drawPlayer1();
             break;
@@ -85,3 +97,5 @@ document.addEventListener('keydown', function (e) {
 
 
 })
+
+
