@@ -4,7 +4,7 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(50, 1fr);
+    grid-template-columns: repeat(51, 1fr);
     width: 400px;
     height: 250px;
     border: white 3px solid;
@@ -12,7 +12,7 @@
 
 .cell {
     background-color: black;
-    border: red solid 1px;
+    /* border: red solid 1px; */
 }
 
 .player {
@@ -20,5 +20,9 @@
 }
 
 .ball {
+    background-color: white;
+}
+
+.net {
     background-color: white;
 }
