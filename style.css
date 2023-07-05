@@ -7,12 +7,16 @@ h1 {
     margin-left: 170px;
 }
 
+h2 {
+    color: white;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(204, 1fr);
     width: 800px;
     height: 500px;
-    border: cyan 3px solid;
+    /* border: cyan 3px solid; */
 }
 
 .cell {

@@ -1,6 +1,9 @@
 "use strict";
 
 const grid = document.querySelector('.grid');
+const score1 = document.querySelector('.score1');
+const score2 = document.querySelector('.score2');
+const score = [0, 0]
 const squares = [];
 const width = 204;
 
@@ -14,6 +17,13 @@ const createBoard = function () {
 }
 
 createBoard();
+
+//Draw boundaries
+for (let i = 0; i < 16320; i++) {
+    if (i < 204 || i > 16116) {
+        squares[i].style.backgroundColor = 'white'
+    }
+}
 
 // Draw net
 const net = [];
@@ -128,7 +138,7 @@ const undrawBall = function () {
 
 drawBall();
 
-// Ball mechanics
+// Ball mechanics and Scoring
 const ballMove = function () {
     undrawBall();
 
@@ -182,10 +192,50 @@ const ballMove = function () {
 
     ballIndex += direction;
     drawBall();
+
+    // Score Player 1
+    if (ball.some((e) => (e + ballIndex + 1) % 204 === 0 &&
+        !squares[e + ballIndex].classList.contains('playerTwo')
+    )) {
+        score[0]++;
+        score1.textContent = score[0];
+        clearInterval(playGame)
+        newPoint();
+        direction = downRight;
+    }
+
+    // Score Player 2
+    if (ball.some((e) => (e + ballIndex) % 204 === 0 &&
+        !squares[e + ballIndex].classList.contains('playerOne')
+    )) {
+        score[1]++;
+        score2.textContent = score[1];
+        clearInterval(playGame)
+        newPoint();
+        direction = downLeft;
+    }
 }
 
+const newPoint = function () {
+    undrawBall();
+    ballIndex = 7856;
+    drawBall();
+}
 
-// setInterval(ballMove, 30)
+let playGame;
+
+// Play Game
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode === 13) {
+        playGame = setInterval(ballMove, 30)
+    }
+})
+
+
+// Things I want to add:
+// Everytime the ball is hit the game speeds up
+// Implement the large scores in the game 
+
 
 
 
