@@ -106,11 +106,96 @@ document.addEventListener('keydown', function (e) {
 })
 
 let ball = [0, 1, width, width + 1];
-let ballIndex = 800;
+let ballIndex = 7856;
 
-ball.forEach((e) => {
-    squares[e + ballIndex].classList.add('ball')
-})
+//#region Ball Directions
+const upRight = -width + 1;
+const upLeft = -width - 1;
+const downRight = width + 1;
+const downLeft = width - 1;
+//#endregion 
+
+let direction = downLeft;
+
+//#region Draw Ball
+const drawBall = function () {
+    ball.forEach((e) => squares[e + ballIndex].classList.add('ball'))
+}
+const undrawBall = function () {
+    ball.forEach((e) => squares[e + ballIndex].classList.remove('ball'))
+}
+//#endregion 
+
+drawBall();
+
+const ballMove = function () {
+    undrawBall();
+
+    // If ball hits the top
+    if (ball.some((e) => (e + ballIndex + direction) < 0)) {
+        switch (direction) {
+            case upRight:
+                direction = downRight;
+                break;
+            case upLeft:
+                direction = downLeft;
+                break;
+        }
+    }
+
+    // If ball hits the bottom
+    if (ball.some((e) => (e + ballIndex + direction) > 16319)) {
+        switch (direction) {
+            case downRight:
+                direction = upRight;
+                break;
+            case downLeft:
+                direction = upLeft;
+                break;
+        }
+    }
+
+    //If ball hits the left side
+    if (ball.some((e) => (e + ballIndex + direction) % 204 === 0)) {
+        console.log('you lost a point')
+    }
+
+
+    // If ball hits the right side
+    if (ball.some((e) => (e + ballIndex + direction + 1) % 204 === 0)) {
+        console.log('you won a point')
+    }
+
+    //If ball hits player 1
+    if ((ball.some((e) => squares[e + ballIndex].classList.contains('player')))) {
+        switch (direction) {
+            case upLeft:
+                direction = upRight;
+                break;
+            case upRight:
+                direction = downRight;
+                break;
+            case downLeft:
+                direction = upLeft;
+                break;
+            case downRight:
+                direction = upRight;
+                break;
+        }
+    }
+
+
+
+
+    ballIndex += direction;
+
+
+
+    drawBall();
+
+}
+
+// setInterval(ballMove, 60)
 
 
 
