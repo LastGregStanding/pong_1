@@ -1,3 +1,24 @@
 * {
     background-color: black;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(50, 1fr);
+    width: 400px;
+    height: 250px;
+    border: white 3px solid;
+}
+
+.cell {
+    background-color: black;
+    border: red solid 1px;
+}
+
+.player {
+    background-color: white;
+}
+
+.ball {
+    background-color: white;
+}
