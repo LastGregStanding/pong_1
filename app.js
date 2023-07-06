@@ -5,6 +5,22 @@ const score = [0, 0]
 const squares = [];
 const width = 204;
 
+const playScoreSound = function () {
+    const scoreSound = document.getElementById('score-sound');
+    scoreSound.currentTime = 0;
+    scoreSound.play();
+}
+const playWallSound = function () {
+    const wallSound = document.getElementById('wall-sound');
+    wallSound.currentTime = 0;
+    wallSound.play();
+}
+const playPaddleSound = function () {
+    const paddleSound = document.getElementById('paddle-sound');
+    paddleSound.currentTime = 0;
+    paddleSound.play();
+}
+
 const createBoard = function () {
     for (let i = 0; i < 16320; i++) {
         let cell = document.createElement('div');
@@ -150,6 +166,7 @@ const ballMove = function () {
                 direction = downLeft;
                 break;
         }
+        playWallSound();
     }
 
     // If ball hits the bottom
@@ -162,6 +179,7 @@ const ballMove = function () {
                 direction = upLeft;
                 break;
         }
+        playWallSound();
     }
 
     // If ball hits player 1
@@ -174,6 +192,7 @@ const ballMove = function () {
                 direction = downRight;
                 break;
         }
+        playPaddleSound();
     }
 
     // If ball hits player 2
@@ -186,6 +205,7 @@ const ballMove = function () {
                 direction = upLeft;
                 break;
         }
+        playPaddleSound();
     }
 
     ballIndex += direction;
@@ -200,6 +220,7 @@ const ballMove = function () {
         player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'black')
         player1Score = scoreNumbers[score[0]];
         player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'white')
+        playScoreSound();
         // Start next game
         clearInterval(playGame)
         newPoint();
@@ -214,7 +235,9 @@ const ballMove = function () {
         // Change number
         player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'black')
         player2Score = scoreNumbers[score[1]];
-        player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'white')
+        player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'white');
+        playScoreSound();
+
         // Start next game
         clearInterval(playGame)
         newPoint();
