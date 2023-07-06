@@ -1,8 +1,6 @@
 "use strict";
 
 const grid = document.querySelector('.grid');
-const score1 = document.querySelector('.score1');
-const score2 = document.querySelector('.score2');
 const score = [0, 0]
 const squares = [];
 const width = 204;
@@ -198,7 +196,11 @@ const ballMove = function () {
         !squares[e + ballIndex].classList.contains('playerTwo')
     )) {
         score[0]++;
-        score1.textContent = score[0];
+        // Change number
+        player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'black')
+        player1Score = scoreNumbers[score[0]];
+        player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'white')
+        // Start next game
         clearInterval(playGame)
         newPoint();
         direction = downRight;
@@ -209,7 +211,11 @@ const ballMove = function () {
         !squares[e + ballIndex].classList.contains('playerOne')
     )) {
         score[1]++;
-        score2.textContent = score[1];
+        // Change number
+        player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'black')
+        player2Score = scoreNumbers[score[1]];
+        player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'white')
+        // Start next game
         clearInterval(playGame)
         newPoint();
         direction = downLeft;
@@ -222,12 +228,33 @@ const newPoint = function () {
     drawBall();
 }
 
+// Score numbers
+const scoreNumbers = [
+
+    // zero
+    [2, 3, 4, 5, 6, 7, 8, width + 2, width * 2 + 2, width * 3 + 2, width * 4 + 2, width * 5 + 2, width * 6 + 2, width * 6 + 3, width * 6 + 4, width * 6 + 5, width * 6 + 6, width * 6 + 7, width * 6 + 8, width * 5 + 8, width * 4 + 8, width * 3 + 8, width * 2 + 8, width * 1 + 8],
+    // one
+    [5, width + 5, width * 2 + 5, width * 3 + 5, width * 4 + 5, width * 5 + 5, width * 6 + 5],
+    // two
+    [width + 1, width + 2, 2, 3, 4, 5, width + 6, width * 2 + 5, width * 3 + 4, width * 4 + 3, width * 5 + 2, width * 6 + 2, width * 6 + 3, width * 6 + 4, width * 6 + 5, width * 6 + 6, width * 6 + 7],
+    // three
+    [1, 2, 3, 4, 5, width + 5, width * 2 + 5, width * 3 + 5, width * 4 + 5, width * 5 + 5, width * 6 + 5, width * 3 + 4, width * 3 + 3, width * 3 + 2, width * 6 + 4, width * 6 + 3, width * 6 + 2, width * 6 + 1],
+    // four
+    [1, 5, width + 5, width * 2 + 5, width * 3 + 5, width * 4 + 5, width * 5 + 5, width * 6 + 5, width + 1, width * 2 + 1, width * 2 + 2, width * 2 + 3, width * 2 + 4, width * 2 + 6, width * 2 + 7],
+
+];
+
+let player1Score = scoreNumbers[score[0]];
+let player2Score = scoreNumbers[score[1]];
+player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'white')
+player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'white')
+
 let playGame;
 
 // Play Game
 document.addEventListener('keydown', function (e) {
     if (e.keyCode === 13) {
-        playGame = setInterval(ballMove, 30)
+        playGame = setInterval(ballMove, 20)
     }
 })
 
