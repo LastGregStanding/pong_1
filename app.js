@@ -1,6 +1,7 @@
 "use strict";
 
 const grid = document.querySelector('.grid');
+const winner = document.querySelector('.winner');
 const score = [0, 0]
 const squares = [];
 const width = 204;
@@ -218,15 +219,17 @@ const ballMove = function () {
         !squares[e + ballIndex].classList.contains('playerTwo')
     )) {
         score[0]++;
-        // Change number
-        player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'black')
-        player1Score = scoreNumbers[score[0]];
-        player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'white')
-        playScoreSound();
-        // Start next game
-        clearInterval(playGame)
-        newPoint();
-        direction = downRight;
+        if (score[0] < 4) {
+            // Change number
+            player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'black')
+            player1Score = scoreNumbers[score[0]];
+            player1Score.forEach((e) => squares[e + 1104].style.backgroundColor = 'white')
+            playScoreSound();
+            // Start next game
+            clearInterval(playGame)
+            newPoint();
+            direction = downRight;
+        } else { winner.textContent = 'Player 1 wins!' }
     }
 
     // Score Player 2
@@ -234,16 +237,18 @@ const ballMove = function () {
         !squares[e + ballIndex].classList.contains('playerOne')
     )) {
         score[1]++;
-        // Change number
-        player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'black')
-        player2Score = scoreNumbers[score[1]];
-        player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'white');
-        playScoreSound();
+        if (score[1] < 4) {
+            // Change number
+            player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'black')
+            player2Score = scoreNumbers[score[1]];
+            player2Score.forEach((e) => squares[e + 1134].style.backgroundColor = 'white');
+            playScoreSound();
 
-        // Start next game
-        clearInterval(playGame)
-        newPoint();
-        direction = downLeft;
+            // Start next game
+            clearInterval(playGame)
+            newPoint();
+            direction = downLeft;
+        } else { winner.textContent = 'Player 1 wins!' }
     }
 }
 
@@ -286,8 +291,3 @@ document.addEventListener('keydown', function (e) {
 
 // Things I want to add:
 // Everytime the ball is hit the game speeds up
-// Implement the large scores in the game 
-
-
-
-
