@@ -5,6 +5,7 @@ const score = [0, 0]
 const squares = [];
 const width = 204;
 
+//#region Sound Effects
 const playScoreSound = function () {
     const scoreSound = document.getElementById('score-sound');
     scoreSound.currentTime = 0;
@@ -20,6 +21,7 @@ const playPaddleSound = function () {
     paddleSound.currentTime = 0;
     paddleSound.play();
 }
+//#endregion
 
 const createBoard = function () {
     for (let i = 0; i < 16320; i++) {
