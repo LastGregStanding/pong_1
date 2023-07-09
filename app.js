@@ -288,6 +288,4 @@ document.addEventListener('keydown', function (e) {
     }
 })
 
-
-// Things I want to add:
-// Everytime the ball is hit the game speeds up
+// Add: When ball is hit, ball speeds up each time.
