@@ -40,3 +40,24 @@ h2 {
 .net {
   background-color: white;
 }
+
+button {
+  background-color: white;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.hidden {
+  display: none;
+}
+
+.game-over-results {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+}
+
+.winner {
+  font-size: 30px;
+}

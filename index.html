@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pong</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <h1>PONG</h1>
     <div class="grid"></div>
     <audio id="score-sound" src="pong_sounds/pong_score.mp3"></audio>
     <audio id="wall-sound" src="pong_sounds/pong_wall.mp3"></audio>
     <audio id="paddle-sound" src="pong_sounds/pong_paddle.mp3"></audio>
-    <h2 class="winner"></h2>
+    <div class="game-over-results">
+      <h2 class="winner hidden">Player 1 wins!</h2>
+      <button class="play-again hidden">Play Again</button>
+    </div>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
