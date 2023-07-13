@@ -1,42 +1,42 @@
 * {
-    background-color: black;
+  background-color: black;
 }
 
 h1 {
-    color: white;
-    margin-left: 365px;
+  color: white;
+  margin-left: 365px;
 }
 
 h2 {
-    color: white;
-    margin-left: 360px;
+  color: white;
+  margin-left: 360px;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(204, 1fr);
-    width: 800px;
-    height: 500px;
-    /* border: cyan 3px solid; */
+  display: grid;
+  grid-template-columns: repeat(204, 1fr);
+  width: 1500px;
+  height: 1200px;
+  /* border: cyan 3px solid; */
 }
 
 .cell {
-    background-color: black;
-    /* border: red solid 1px; */
+  background-color: black;
+  /* border: red solid 1px; */
 }
 
 .playerOne {
-    background-color: white;
+  background-color: white;
 }
 
 .playerTwo {
-    background-color: white;
+  background-color: white;
 }
 
 .ball {
-    background-color: white;
+  background-color: white;
 }
 
 .net {
-    background-color: white;
+  background-color: white;
 }
