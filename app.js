@@ -4,7 +4,7 @@ const grid = document.querySelector(".grid");
 const winner = document.querySelector(".winner");
 const playBtn = document.querySelector(".play-again");
 const score = [0, 0];
-const squares = [];
+const gameboardCells = [];
 const width = 204;
 
 //#region Sound Effects
@@ -30,28 +30,29 @@ const createBoard = function () {
     let cell = document.createElement("div");
     cell.classList.add("cell");
     grid.appendChild(cell);
-    squares.push(cell);
+    gameboardCells.push(cell);
   }
 };
 
 createBoard();
 
-//Draw boundaries
+//Draw the top and bottom boundaries of the gameboard
 for (let i = 0; i < 16320; i++) {
   if (i < 204 || i > 16116) {
-    squares[i].style.backgroundColor = "white";
+    gameboardCells[i].style.backgroundColor = "white";
   }
 }
 
-// Draw net
+// Draw the net in the middle of the gameboard
 const net = [];
 for (let i = 0; i < 79; i++) {
   i++;
   let square = width * i + 104;
-  squares[square].classList.add("net");
+  gameboardCells[square].classList.add("net");
   net.push(square);
 }
 
+// Players starting positions
 let player1Index = 7344;
 let player2Index = 7547;
 
@@ -70,19 +71,23 @@ for (let i = 0; i < 11; i++) {
 }
 
 const drawPlayer1 = function () {
-  player1.forEach((e) => squares[e + player1Index].classList.add("playerOne"));
+  player1.forEach((e) =>
+    gameboardCells[e + player1Index].classList.add("playerOne")
+  );
 };
 const undrawPlayer1 = function () {
   player1.forEach((e) =>
-    squares[e + player1Index].classList.remove("playerOne")
+    gameboardCells[e + player1Index].classList.remove("playerOne")
   );
 };
 const drawPlayer2 = function () {
-  player1.forEach((e) => squares[e + player2Index].classList.add("playerTwo"));
+  player1.forEach((e) =>
+    gameboardCells[e + player2Index].classList.add("playerTwo")
+  );
 };
 const undrawPlayer2 = function () {
   player1.forEach((e) =>
-    squares[e + player2Index].classList.remove("playerTwo")
+    gameboardCells[e + player2Index].classList.remove("playerTwo")
   );
 };
 //#endregion
@@ -135,24 +140,28 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
+// Ball shape
 let ball = [0, 1, width, width + 1];
+
+// Ball starting point
 let ballIndex = 7856;
 
-//#region Ball Directions
+//#region Ball Movement Directions
 const upRight = -width + 1;
 const upLeft = -width - 1;
 const downRight = width + 1;
 const downLeft = width - 1;
 //#endregion
 
+// Current ball movement direction
 let direction = downLeft;
 
-//#region Draw Ball
+//#region Drawing the ball
 const drawBall = function () {
-  ball.forEach((e) => squares[e + ballIndex].classList.add("ball"));
+  ball.forEach((e) => gameboardCells[e + ballIndex].classList.add("ball"));
 };
 const undrawBall = function () {
-  ball.forEach((e) => squares[e + ballIndex].classList.remove("ball"));
+  ball.forEach((e) => gameboardCells[e + ballIndex].classList.remove("ball"));
 };
 //#endregion
 
@@ -172,7 +181,7 @@ const ballMove = function () {
         direction = downLeft;
         break;
     }
-    playWallSound();
+    // playWallSound();
   }
 
   // If ball hits the bottom
@@ -185,12 +194,14 @@ const ballMove = function () {
         direction = upLeft;
         break;
     }
-    playWallSound();
+    // playWallSound();
   }
 
   // If ball hits player 1
   if (
-    ball.some((e) => squares[e + ballIndex].classList.contains("playerOne"))
+    ball.some((e) =>
+      gameboardCells[e + ballIndex].classList.contains("playerOne")
+    )
   ) {
     switch (direction) {
       case upLeft:
@@ -200,12 +211,14 @@ const ballMove = function () {
         direction = downRight;
         break;
     }
-    playPaddleSound();
+    // playPaddleSound();
   }
 
   // If ball hits player 2
   if (
-    ball.some((e) => squares[e + ballIndex].classList.contains("playerTwo"))
+    ball.some((e) =>
+      gameboardCells[e + ballIndex].classList.contains("playerTwo")
+    )
   ) {
     switch (direction) {
       case downRight:
@@ -215,7 +228,7 @@ const ballMove = function () {
         direction = upLeft;
         break;
     }
-    playPaddleSound();
+    // playPaddleSound();
   }
 
   ballIndex += direction;
@@ -226,24 +239,24 @@ const ballMove = function () {
     ball.some(
       (e) =>
         (e + ballIndex + 1) % 204 === 0 &&
-        !squares[e + ballIndex].classList.contains("playerTwo")
+        !gameboardCells[e + ballIndex].classList.contains("playerTwo")
     )
   ) {
     // Increase score
     score[0]++;
     player1ScoreChange();
-    playScoreSound();
+    // playScoreSound();
 
     // Check scoreboard
     if (score[0] === 4) {
       winner.textContent = "Player 1 wins!";
       winner.classList.remove("hidden");
       playBtn.classList.remove("hidden");
-      newPoint();
+      ballReset();
       clearInterval(playGame);
     } else {
       // Start next point
-      newPoint();
+      ballReset();
       direction = downRight;
       clearInterval(playGame);
     }
@@ -254,31 +267,32 @@ const ballMove = function () {
     ball.some(
       (e) =>
         (e + ballIndex) % 204 === 0 &&
-        !squares[e + ballIndex].classList.contains("playerOne")
+        !gameboardCells[e + ballIndex].classList.contains("playerOne")
     )
   ) {
     // Change number
     score[1]++;
     player2ScoreChange();
-    playScoreSound();
+    // playScoreSound();
 
     // Check scoreboard
     if (score[1] === 4) {
       winner.textContent = "Player 2 wins!";
       winner.classList.remove("hidden");
       playBtn.classList.remove("hidden");
-      newPoint();
+      ballReset();
       clearInterval(playGame);
     } else {
       // Start next point
-      newPoint();
+      ballReset();
       direction = downLeft;
       clearInterval(playGame);
     }
   }
 };
 
-const newPoint = function () {
+// Ball reset after a point has been scored
+const ballReset = function () {
   undrawBall();
   ballIndex = 7856;
   drawBall();
@@ -341,7 +355,6 @@ const scoreNumbers = [
     width * 6 + 4,
     width * 6 + 5,
     width * 6 + 6,
-    width * 6 + 7,
   ],
   // three
   [
@@ -389,29 +402,29 @@ let player2Score = scoreNumbers[score[1]];
 
 // Scoreboard visual placement
 player1Score.forEach(
-  (e) => (squares[e + 1104].style.backgroundColor = "white")
+  (e) => (gameboardCells[e + 1104].style.backgroundColor = "white")
 );
 player2Score.forEach(
-  (e) => (squares[e + 1134].style.backgroundColor = "white")
+  (e) => (gameboardCells[e + 1134].style.backgroundColor = "white")
 );
 
-// Score change functions
+// Changing the score
 const player1ScoreChange = function () {
   player1Score.forEach(
-    (e) => (squares[e + 1104].style.backgroundColor = "black")
+    (e) => (gameboardCells[e + 1104].style.backgroundColor = "black")
   );
   player1Score = scoreNumbers[score[0]];
   player1Score.forEach(
-    (e) => (squares[e + 1104].style.backgroundColor = "white")
+    (e) => (gameboardCells[e + 1104].style.backgroundColor = "white")
   );
 };
 const player2ScoreChange = function () {
   player2Score.forEach(
-    (e) => (squares[e + 1134].style.backgroundColor = "black")
+    (e) => (gameboardCells[e + 1134].style.backgroundColor = "black")
   );
   player2Score = scoreNumbers[score[1]];
   player2Score.forEach(
-    (e) => (squares[e + 1134].style.backgroundColor = "white")
+    (e) => (gameboardCells[e + 1134].style.backgroundColor = "white")
   );
 };
 

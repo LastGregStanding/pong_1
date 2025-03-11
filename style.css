@@ -55,6 +55,8 @@ h2 {
   margin: auto;
 }
 
+/********** Gameboard *************/
+
 .grid {
   display: grid;
   grid-template-columns: repeat(204, 1fr);
@@ -66,12 +68,16 @@ h2 {
   background-color: black;
 }
 
+/********** Players *************/
+
 .playerOne,
 .playerTwo,
 .ball,
 .net {
   background-color: white;
 }
+
+/********** Bottom Section Text *************/
 
 .hidden {
   display: none;
