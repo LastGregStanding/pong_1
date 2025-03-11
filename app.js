@@ -8,21 +8,21 @@ const squares = [];
 const width = 204;
 
 //#region Sound Effects
-const playScoreSound = function () {
-  const scoreSound = document.getElementById("score-sound");
-  scoreSound.currentTime = 0;
-  scoreSound.play();
-};
-const playWallSound = function () {
-  const wallSound = document.getElementById("wall-sound");
-  wallSound.currentTime = 0;
-  wallSound.play();
-};
-const playPaddleSound = function () {
-  const paddleSound = document.getElementById("paddle-sound");
-  paddleSound.currentTime = 0;
-  paddleSound.play();
-};
+// const playScoreSound = function () {
+//   const scoreSound = document.getElementById("score-sound");
+//   scoreSound.currentTime = 0;
+//   scoreSound.play();
+// };
+// const playWallSound = function () {
+//   const wallSound = document.getElementById("wall-sound");
+//   wallSound.currentTime = 0;
+//   wallSound.play();
+// };
+// const playPaddleSound = function () {
+//   const paddleSound = document.getElementById("paddle-sound");
+//   paddleSound.currentTime = 0;
+//   paddleSound.play();
+// };
 //#endregion
 
 const createBoard = function () {

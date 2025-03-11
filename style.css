@@ -1,61 +1,107 @@
+/*************************************/
+/* CSS Reset */
+/*************************************/
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/*************************************/
+/* CSS End of Reset */
+/*************************************/
+
 * {
   background-color: black;
 }
 
 h1 {
   color: white;
-  margin-left: 365px;
+  margin-left: 46%;
 }
 
 h2 {
   color: white;
-  margin-left: 360px;
+  margin-left: 30%;
+}
+
+.game-container {
+  height: 80vh;
+  width: 800px;
+  margin: auto;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(204, 1fr);
-  width: 1500px;
-  height: 1200px;
-  /* border: cyan 3px solid; */
+  width: 100%;
+  height: 100%;
 }
 
 .cell {
   background-color: black;
-  /* border: red solid 1px; */
 }
 
-.playerOne {
-  background-color: white;
-}
-
-.playerTwo {
-  background-color: white;
-}
-
-.ball {
-  background-color: white;
-}
-
+.playerOne,
+.playerTwo,
+.ball,
 .net {
   background-color: white;
-}
-
-button {
-  background-color: white;
-  padding: 10px;
-  font-size: 25px;
-  font-weight: bolder;
 }
 
 .hidden {
   display: none;
 }
 
+.bottom-section-text {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.bottom-section-text h3 {
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+
 .game-over-results {
   display: flex;
-  gap: 20px;
-  margin: 20px;
+  justify-content: space-between;
+}
+
+.game-over-results button {
+  height: 70%;
+  margin-top: 15px;
+  width: 120px;
+  background-color: white;
+  padding: 5px;
+  font-size: 15px;
+  font-weight: bolder;
 }
 
 .winner {

@@ -8,14 +8,29 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>PONG</h1>
-    <div class="grid"></div>
-    <audio id="score-sound" src="pong_sounds/pong_score.mp3"></audio>
-    <audio id="wall-sound" src="pong_sounds/pong_wall.mp3"></audio>
-    <audio id="paddle-sound" src="pong_sounds/pong_paddle.mp3"></audio>
-    <div class="game-over-results">
-      <h2 class="winner hidden">Player 1 wins!</h2>
-      <button class="play-again hidden">Play Again</button>
+    <div class="game-container">
+      <h1>PONG</h1>
+      <div class="grid"></div>
+      <!-- Game Sounds -->
+      <!-- <audio id="score-sound" src="pong_sounds/pong_score.mp3"></audio>
+      <audio id="wall-sound" src="pong_sounds/pong_wall.mp3"></audio>
+      <audio id="paddle-sound" src="pong_sounds/pong_paddle.mp3"></audio> -->
+      <div class="bottom-section-text">
+        <div class="player-1-controls">
+          <h3>Player 1 controls</h3>
+          <p>Up = W</p>
+          <p>Down = S</p>
+        </div>
+        <div class="game-over-results">
+          <h2 class="winner hidden">Player 1 wins!</h2>
+          <button class="play-again hidden">Play Again</button>
+        </div>
+        <div class="player-2-controls">
+          <h3>Player 2 controls</h3>
+          <p>Up = O</p>
+          <p>Down = L</p>
+        </div>
+      </div>
     </div>
     <script src="app.js"></script>
   </body>
